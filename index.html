@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+    <style>
+        .center-content {
+            text-align: center; /* จัดข้อความให้อยู่ตรงกลาง */
+        }
+
+        .center-content img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            text-align: center;
+            padding: 50px;
+            position: relative; /* container ใช้ position: relative เพื่ออ้างอิงตำแหน่ง */
+            height: 200px;
+        }
+
+        .btn {
+            margin: 0 10px; /* เพิ่มช่องว่างระหว่างปุ่ม */
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            cursor: pointer;
+            position: absolute; /* ปุ่มใช้ position: absolute เพื่อให้สามารถขยับได้ */
+        }
+
+        .btn1 {
+            background-color: rgb(255, 81, 81);
+            left: 40%;
+            transform: translateX(-50%);
+        }
+
+        .btn1:hover {
+            background-color: rgb(255, 255, 2);
+        }
+
+        .btn2 {
+            background-color: rgb(64, 207, 64);
+            left: 60%;
+            transform: translateX(-50%);
+        }
+
+        .btn2:hover {
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+    
+<body>
+    <div class="center-content">
+        <h1 id="text">รักมิ้นม้ายยยยย??</h1>
+        <img id="loveimg" src="https://i.pinimg.com/originals/83/cd/ef/83cdef4f9b31d3aa9da285d1219a4d7b.jpg" width="300" height="200">
+    </div>
+    <div class="container" id="container">
+        <button class="btn btn1" id="btn1" onclick="changeImage2()">ไม่!!!</button>
+        <button class="btn btn2" id="btn2" onclick="changeImage()">ร๊ากกกก</button>
+    </div>
+
+    <script>
+        const loveimg = document.getElementById('loveimg');
+        const btn1 = document.getElementById('btn1');
+        // const btn2 = document.getElementById('btn2');
+        const container = document.getElementById('container'); // อ้างอิง container ให้ถูกต้อง
+
+        const hoverImage1 = 'https://i.pinimg.com/originals/a6/10/57/a6105767fb50589b1597a71fa22f1491.jpg';
+        const hoverImage2 = 'https://i.pinimg.com/originals/67/31/b7/6731b7493d66700644d5a4e535d5ecd1.jpg'; 
+        const Image3 = 'https://i.pinimg.com/originals/fa/1b/8f/fa1b8f5fe6ff8b7c81e191225cc2b99e.jpg';
+
+        btn1.addEventListener('mouseover', function() {
+            // loveimg.src = hoverImage1;
+            moveButton(btn1); // ขยับปุ่มเมื่อเมาส์ hover
+        });
+
+        btn1.addEventListener('mouseout', function() {
+            loveimg.src = 'https://i.pinimg.com/originals/83/cd/ef/83cdef4f9b31d3aa9da285d1219a4d7b.jpg'; // รูปภาพเดิม
+        });
+
+        // btn2.addEventListener('mouseover', function() {
+        //     loveimg.src = hoverImage2;
+        // });
+
+        // btn2.addEventListener('mouseout', function() {
+        //     loveimg.src = 'https://i.pinimg.com/originals/a6/0f/95/a60f95756bc9bbe4f18156a81595c7bd.jpg'; // รูปภาพเดิม
+        // });
+
+        function moveButton(button) {
+            // คำนวณตำแหน่งใหม่แบบสุ่มภายใน container
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = button.getBoundingClientRect();
+            
+            // ให้ปุ่มอยู่ภายในขอบเขตของ container
+            let newLeft = Math.random() * (containerRect.width - btnRect.width);
+            let newTop = Math.random() * (containerRect.height - btnRect.height);
+
+            // กำหนดตำแหน่งใหม่ให้ปุ่ม
+            button.style.left = `${newLeft}px`;
+            button.style.top = `${newTop}px`;
+        }
+
+        function changeImage() {
+            let title = document.getElementById('text')
+            if (loveimg.src.includes('83cdef4f9b31d3aa9da285d1219a4d7b.jpg')) {
+                loveimg.src = Image3;
+                title.innerHTML = "ร๊ากกเหมือนกัน ❤️";
+            } else {
+                loveimg.src = 'https://i.pinimg.com/originals/83/cd/ef/83cdef4f9b31d3aa9da285d1219a4d7b.jpg'; 
+            } 
+        }
+
+        function changeImage2() {
+            let title = document.getElementById('text')
+            if (loveimg.src.includes('a6105767fb50589b1597a71fa22f1491.jpg')) {
+                loveimg.scr = hoverImage1;
+                title.innerHTML = "ไม่รักแล่วว";
+            } else {
+                loveimg.src = 'https://i.pinimg.com/originals/a6/10/57/a6105767fb50589b1597a71fa22f1491.jpg';
+                
+            }
+
+        }
+
+    </script>
+</body>
+</html>
